@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cd16g48up2se3"]
 
 [ext_resource type="Script" uid="uid://dp6hblaxnll0h" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://dg7jwq7gbhvy1" path="res://jumpBar.png" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://c6yf7ts40ij86" path="res://barFilled.png" id="3_1bvp3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -30,10 +32,10 @@ material = SubResource("StandardMaterial3D_h2yge")
 size = Vector3(50.708984, 1, 49.677734)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
-size = Vector3(1.2176514, 10.922668, 12.832031)
+size = Vector3(1.2176514, 23.781647, 53.562744)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
-size = Vector3(1.2176514, 10.922668, 12.832031)
+size = Vector3(1.2176514, 23.781647, 53.562744)
 
 [node name="Main" type="Node3D" unique_id=720287220]
 
@@ -52,8 +54,33 @@ mesh = SubResource("CapsuleMesh_sclpf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30804694, 0)
 shape = SubResource("CapsuleShape3D_lfl3o")
 
-[node name="Camera3D" type="Camera3D" parent="Player" unique_id=592674095]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0891123, -0.14394099)
+[node name="CamPivot" type="Node3D" parent="Player" unique_id=901105487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.089, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/CamPivot" unique_id=592674095]
+
+[node name="Sprite3D" type="Sprite3D" parent="Player/CamPivot/Camera3D" unique_id=188801559]
+transform = Transform3D(0.265, 0, 0, 0, 0.23288651, 0.12644707, 0, -0.12644707, 0.23288651, 0, -0.612, -0.972)
+no_depth_test = true
+texture = ExtResource("2_h2yge")
+
+[node name="2" type="Sprite3D" parent="Player/CamPivot/Camera3D/Sprite3D" unique_id=1535444560]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.055, 0, 0)
+sorting_offset = 1.645
+no_depth_test = true
+texture = ExtResource("3_1bvp3")
+
+[node name="3" type="Sprite3D" parent="Player/CamPivot/Camera3D/Sprite3D" unique_id=698791918]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 1.4901161e-08, 0, -1.4901161e-08, 0.9999998, 0.9356558, 0, 0)
+sorting_offset = 1.645
+no_depth_test = true
+texture = ExtResource("3_1bvp3")
+
+[node name="1" type="Sprite3D" parent="Player/CamPivot/Camera3D/Sprite3D" unique_id=205297073]
+transform = Transform3D(1, 0, 0, 0, 0.9999996, 4.4703484e-08, 0, -4.4703484e-08, 0.9999996, -1.045, 0, 0)
+sorting_offset = 1.645
+no_depth_test = true
+texture = ExtResource("3_1bvp3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=950018757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61359143, 0)
@@ -64,22 +91,26 @@ shape = SubResource("BoxShape3D_lfl3o")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1826447694]
 mesh = SubResource("BoxMesh_sclpf")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=765864484]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.390728, 4.9105062, 11.964148)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=858854126]
-shape = SubResource("BoxShape3D_0xm2m")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=173226848]
-mesh = SubResource("BoxMesh_ig7tw")
-
 [node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=509880537]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.778778, 4.9105062, 11.964148)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=836710000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.429489, 20.365358)
 shape = SubResource("BoxShape3D_0xm2m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3" unique_id=1841621074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.4204597, 20.34455)
+mesh = SubResource("BoxMesh_ig7tw")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="." unique_id=476118879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.576206, 4.9105062, 11.964148)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" unique_id=64736901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.429489, 20.365358)
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4" unique_id=965898900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.4204597, 20.34455)
 mesh = SubResource("BoxMesh_ig7tw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=141399598]
