@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dp6hblaxnll0h" path="res://player.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://dg7jwq7gbhvy1" path="res://jumpBar.png" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://cdf2yepjf30a0" path="res://wobbler.gd" id="2_lquwl"]
 [ext_resource type="Texture2D" uid="uid://c6yf7ts40ij86" path="res://barFilled.png" id="3_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://b5cew8kyft7wk" path="res://camArm1.png" id="4_1bvp3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -42,6 +44,41 @@ size = Vector3(1.2176514, 23.781647, 53.562744)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1393728126]
 environment = SubResource("Environment_h2yge")
 
+[node name="Wobbler" type="Node3D" parent="." unique_id=313427264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3233464, 0)
+script = ExtResource("2_lquwl")
+
+[node name="Sprite3D" type="Sprite3D" parent="Wobbler" unique_id=188801559]
+transform = Transform3D(0.16914468, -0.025822993, 0.055886075, 0, 0.16339995, 0.07550138, -0.061563626, -0.07094809, 0.15354574, -0.705, -0.485, -0.855)
+no_depth_test = true
+texture_filter = 0
+texture = ExtResource("2_h2yge")
+
+[node name="2" type="Sprite3D" parent="Wobbler/Sprite3D" unique_id=1535444560]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.055, 0, 0)
+sorting_offset = 1.645
+no_depth_test = true
+texture_filter = 5
+texture = ExtResource("3_1bvp3")
+
+[node name="3" type="Sprite3D" parent="Wobbler/Sprite3D" unique_id=698791918]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 1.4901161e-08, 0, -1.4901161e-08, 0.9999998, 0.9356558, 0, 0)
+sorting_offset = 1.645
+no_depth_test = true
+texture = ExtResource("3_1bvp3")
+
+[node name="1" type="Sprite3D" parent="Wobbler/Sprite3D" unique_id=205297073]
+transform = Transform3D(1, 0, 0, 0, 0.9999996, 4.4703484e-08, 0, -4.4703484e-08, 0.9999996, -1.045, 0, 0)
+sorting_offset = 1.645
+no_depth_test = true
+texture = ExtResource("3_1bvp3")
+
+[node name="Arm" type="Sprite3D" parent="Wobbler" unique_id=484793355]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 1.125, -0.70000005, -1.9)
+no_depth_test = true
+texture_filter = 0
+texture = ExtResource("4_1bvp3")
+
 [node name="Player" type="CharacterBody3D" parent="." unique_id=840459433]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2343464, 0)
 script = ExtResource("1_ig7tw")
@@ -58,29 +95,6 @@ shape = SubResource("CapsuleShape3D_lfl3o")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.089, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/CamPivot" unique_id=592674095]
-
-[node name="Sprite3D" type="Sprite3D" parent="Player/CamPivot/Camera3D" unique_id=188801559]
-transform = Transform3D(0.265, 0, 0, 0, 0.23288651, 0.12644707, 0, -0.12644707, 0.23288651, 0, -0.612, -0.972)
-no_depth_test = true
-texture = ExtResource("2_h2yge")
-
-[node name="2" type="Sprite3D" parent="Player/CamPivot/Camera3D/Sprite3D" unique_id=1535444560]
-transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.055, 0, 0)
-sorting_offset = 1.645
-no_depth_test = true
-texture = ExtResource("3_1bvp3")
-
-[node name="3" type="Sprite3D" parent="Player/CamPivot/Camera3D/Sprite3D" unique_id=698791918]
-transform = Transform3D(1, 0, 0, 0, 0.9999998, 1.4901161e-08, 0, -1.4901161e-08, 0.9999998, 0.9356558, 0, 0)
-sorting_offset = 1.645
-no_depth_test = true
-texture = ExtResource("3_1bvp3")
-
-[node name="1" type="Sprite3D" parent="Player/CamPivot/Camera3D/Sprite3D" unique_id=205297073]
-transform = Transform3D(1, 0, 0, 0, 0.9999996, 4.4703484e-08, 0, -4.4703484e-08, 0.9999996, -1.045, 0, 0)
-sorting_offset = 1.645
-no_depth_test = true
-texture = ExtResource("3_1bvp3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=950018757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61359143, 0)

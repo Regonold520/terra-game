@@ -23,14 +23,14 @@ var wallJumps = 3:
 		uiRot.kill()
 		uiRot = create_tween()
 		
-		$CamPivot/Camera3D/Sprite3D.rotation_degrees.z = newRot
-		uiRot.tween_property($CamPivot/Camera3D/Sprite3D, "rotation_degrees:z", 0, 1).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+		$"../Wobbler/Sprite3D".rotation_degrees.z = newRot
+		uiRot.tween_property($"../Wobbler/Sprite3D", "rotation_degrees:z", 0, 1).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
 		
-		for i in $CamPivot/Camera3D/Sprite3D.get_children():
+		for i in $"../Wobbler/Sprite3D".get_children():
 			i.texture = load("res://barEmpty.png")
 		
 		for i in value:
-			$CamPivot/Camera3D/Sprite3D.find_child(str(i+1)).texture = load("res://barFilled.png")
+			$"../Wobbler/Sprite3D".find_child(str(i+1)).texture = load("res://barFilled.png")
 
 
 
