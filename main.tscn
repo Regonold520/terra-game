@@ -5,6 +5,10 @@
 [ext_resource type="Script" uid="uid://cdf2yepjf30a0" path="res://wobbler.gd" id="2_lquwl"]
 [ext_resource type="Texture2D" uid="uid://c6yf7ts40ij86" path="res://barFilled.png" id="3_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b5cew8kyft7wk" path="res://camArm1.png" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://cj32fp12ff8x6" path="res://testContainer.png" id="6_272bh"]
+[ext_resource type="Texture2D" uid="uid://bm05qvfwei1c3" path="res://element1.png" id="7_5vw27"]
+[ext_resource type="Texture2D" uid="uid://dug21bafd5yso" path="res://element3.png" id="8_kek77"]
+[ext_resource type="Texture2D" uid="uid://7v7fmq5cpaw4" path="res://element2.png" id="9_4c57u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -38,6 +42,20 @@ size = Vector3(1.2176514, 23.781647, 53.562744)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
 size = Vector3(1.2176514, 23.781647, 53.562744)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
+specular_mode = 1
+albedo_texture = ExtResource("6_272bh")
+metallic_specular = 0.0
+uv1_scale = Vector3(2.66, 1, 2.32)
+uv1_triplanar_sharpness = 0.9659363
+
+[sub_resource type="BoxMesh" id="BoxMesh_lfl3o"]
+material = SubResource("StandardMaterial3D_272bh")
+size = Vector3(5.32666, 4.7927856, 8.574219)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sclpf"]
+size = Vector3(5.32666, 4.7927856, 8.574219)
 
 [node name="Main" type="Node3D" unique_id=720287220]
 
@@ -130,4 +148,38 @@ mesh = SubResource("BoxMesh_ig7tw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=141399598]
 transform = Transform3D(0.8225092, -0.5202799, 0.229756, -0.562761, -0.6860056, 0.46119034, -0.08233416, -0.50863093, -0.857039, 0, -6.6362104, 0)
+light_energy = 1.302
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
 shadow_enabled = true
+shadow_bias = 1.798
+
+[node name="TestCube" type="StaticBody3D" parent="." unique_id=523944282]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5327334, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestCube" unique_id=909592240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4373765, -1.2792954, -3.5037842)
+mesh = SubResource("BoxMesh_lfl3o")
+
+[node name="Sprite3D" type="Sprite3D" parent="TestCube" unique_id=1864595398]
+transform = Transform3D(-4.5896953e-09, 0, 0.105, 0.040237345, 0.096984304, 1.7588301e-09, -0.096984304, 0.040237345, -4.2393182e-09, -1.7569523, -1.9921608, -1.0320435)
+shaded = true
+render_priority = -45
+texture = ExtResource("7_5vw27")
+
+[node name="Sprite3D2" type="Sprite3D" parent="TestCube" unique_id=1202487393]
+transform = Transform3D(-5.6456515e-09, -4.8973603e-11, 0.125, -0.03252542, 0.12069423, -1.4217308e-09, -0.12069423, -0.03252542, -5.4639235e-09, -1.7569523, -1.5609002, -4.9141517)
+shaded = true
+render_priority = -45
+texture = ExtResource("8_kek77")
+
+[node name="Sprite3D3" type="Sprite3D" parent="TestCube" unique_id=1226696631]
+transform = Transform3D(-5.8491967e-09, 1.5984414e-10, 0.125, 0.0479016, 0.11545751, 2.0938453e-09, -0.11545751, 0.0479016, -5.4639235e-09, -1.7569523, 0.051290274, -2.3170133)
+shaded = true
+render_priority = -45
+texture = ExtResource("9_4c57u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestCube" unique_id=159065550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4373765, -1.2792954, -3.5037842)
+shape = SubResource("BoxShape3D_sclpf")
