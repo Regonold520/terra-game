@@ -7,7 +7,11 @@ var pitchInput = 0
 
 @onready var cam = get_viewport().get_camera_3d()
 
-var speed = 17
+var speed = 17.0
+var maxSpeed = 30.0
+var groundAccel = 100.0
+var airAccel = 50.0
+
 var jumpVec = 10
 var wallJumpVec = 14
 
@@ -43,6 +47,8 @@ var maxLean = 10
 var wallJump = true
 var startSlide = false
 
+var normalFOV = 81.4
+var maxFOV = 90.0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -59,7 +65,7 @@ func  _unhandled_input(event: InputEvent) -> void:
 			twistInput = -event.relative.x * mouseSens
 			pitchInput = -event.relative.y * mouseSens
 
-func camMovement():
+func camMovement(delta):
 	self.rotate_y(twistInput)
 	cam.rotate_x(pitchInput)
 	
@@ -67,12 +73,16 @@ func camMovement():
 	
 	twistInput = 0
 	pitchInput = 0
+	
+	
 
 func _physics_process(delta: float) -> void:
-	camMovement()
+	camMovement(delta)
+	
+	var accel = groundAccel
 	
 	if not is_on_floor():
-		
+		accel = airAccel
 		
 		if is_on_wall():
 			if get_wall_normal().dot(global_transform.basis.x) > 0:
@@ -97,8 +107,8 @@ func _physics_process(delta: float) -> void:
 	var inputDir := Input.get_vector("Left", "Right", "Up", "Down")
 	var dir = (transform.basis * Vector3(inputDir.x, 0, inputDir.y)).normalized()
 	
-	velocity.x = move_toward(velocity.x, dir.x * speed, 100 * delta)
-	velocity.z = move_toward(velocity.z, dir.z * speed, 100 * delta)
+	velocity.x = move_toward(velocity.x, dir.x * speed, accel * delta)
+	velocity.z = move_toward(velocity.z, dir.z * speed, accel * delta)
 	
 	wallCamAngle = lerp(wallCamAngle, float(targetWallCamAngle), delta*5)
 	
@@ -109,9 +119,16 @@ func _physics_process(delta: float) -> void:
 			startSlide = false
 			velocity.y = wallJumpVec
 			
-			velocity.x = get_wall_normal().x * 15
-			velocity.z = get_wall_normal().z * 15
+			var wallNormal = get_wall_normal()
+			var wallJumpDir = Vector3(wallNormal.x, 0, wallNormal.z).normalized()
+			
+			velocity += (wallJumpDir * 15)
 	else:
 		targetWallCamAngle = 0
+	
+	var horizontalSpeed = Vector2(velocity.x, velocity.z).length()
+	var targetFOV = lerp(normalFOV, maxFOV, horizontalSpeed / 30.0)
+	
+	cam.fov = lerp(cam.fov, targetFOV, delta * 8.0)
 			
 	move_and_slide()

@@ -49,7 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3233464, 0)
 script = ExtResource("2_lquwl")
 
 [node name="Sprite3D" type="Sprite3D" parent="Wobbler" unique_id=188801559]
-transform = Transform3D(0.16914468, -0.025822993, 0.055886075, 0, 0.16339995, 0.07550138, -0.061563626, -0.07094809, 0.15354574, -0.705, -0.485, -0.855)
+transform = Transform3D(0.14565235, -0.022236465, 0.048124123, 0, 0.14070551, 0.06501507, -0.053013124, -0.061094183, 0.13221993, -0.8, -0.58, -0.855)
 no_depth_test = true
 texture_filter = 0
 texture = ExtResource("2_h2yge")
@@ -74,7 +74,7 @@ no_depth_test = true
 texture = ExtResource("3_1bvp3")
 
 [node name="Arm" type="Sprite3D" parent="Wobbler" unique_id=484793355]
-transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 1.125, -0.70000005, -1.9)
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 1.125, -0.7, -1.575)
 no_depth_test = true
 texture_filter = 0
 texture = ExtResource("4_1bvp3")
@@ -95,6 +95,7 @@ shape = SubResource("CapsuleShape3D_lfl3o")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.089, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/CamPivot" unique_id=592674095]
+fov = 81.4
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=950018757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61359143, 0)
