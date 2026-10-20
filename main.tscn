@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dg7jwq7gbhvy1" path="res://jumpBar.png" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://cdf2yepjf30a0" path="res://wobbler.gd" id="2_lquwl"]
 [ext_resource type="Texture2D" uid="uid://c6yf7ts40ij86" path="res://barFilled.png" id="3_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://b5cew8kyft7wk" path="res://camArm1.png" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://b5cew8kyft7wk" path="res://camArm1.png" id="4_5vw27"]
+[ext_resource type="Script" uid="uid://lox7wj3uxxer" path="res://camera_3d.gd" id="6_5vw27"]
 [ext_resource type="Texture2D" uid="uid://cj32fp12ff8x6" path="res://testContainer.png" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://dcrrt0tv6i27a" path="res://item.tscn" id="8_5vw27"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_272bh"]
 sky_top_color = Color(0.645833, 0.8396978, 0.92308724, 1)
@@ -36,6 +38,7 @@ height = 2.6323242
 size = Vector3(50.708984, 1, 49.677734)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(0.23642501, 0.35, 0.1435, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_sclpf"]
 material = SubResource("StandardMaterial3D_h2yge")
@@ -54,7 +57,9 @@ metallic_specular = 0.0
 uv1_scale = Vector3(0.065, 0.065, 0.061)
 uv1_offset = Vector3(0.19, 0.28, -0.55)
 uv1_triplanar = true
+uv2_offset = Vector3(-0.07, 0, 0)
 texture_filter = 1
+billboard_keep_scale = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_lfl3o"]
 material = SubResource("StandardMaterial3D_272bh")
@@ -135,7 +140,7 @@ texture = ExtResource("3_1bvp3")
 transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 1.125, -0.7, -1.575)
 no_depth_test = true
 texture_filter = 0
-texture = ExtResource("4_1bvp3")
+texture = ExtResource("4_5vw27")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=840459433]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2343464, 0)
@@ -154,6 +159,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.089, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/CamPivot" unique_id=592674095]
 fov = 81.4
+script = ExtResource("6_5vw27")
+
+[node name="Interactor" type="RayCast3D" parent="Player/CamPivot/Camera3D" unique_id=1114992777]
+target_position = Vector3(0, 0, -3)
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=950018757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61359143, 0)
@@ -221,3 +232,7 @@ mesh = SubResource("BoxMesh_dg77c")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="TestCube2" unique_id=456683665]
 shape = SubResource("ConcavePolygonShape3D_7mycd")
+
+[node name="Item" parent="." unique_id=2131885660 instance=ExtResource("8_5vw27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1054883, 0.9031501, -9.05744)
+id = "scissors"
