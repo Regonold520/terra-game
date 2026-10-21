@@ -45,9 +45,9 @@ func _process(delta: float) -> void:
 	else:
 		canCollectItem = null
 	
-	$"../../../Wobbler/Pickup".visible = canCollectItem != null
+	$"../../Wobbler/Pickup".visible = canCollectItem != null
 	
-	$"../../../Wobbler/Pickup".rotation_degrees.z = floor((sin(deltaTimer*5)+0.5))*10
+	$"../../Wobbler/Pickup".rotation_degrees.z = floor((sin(deltaTimer*5)+0.5))*10
 	
 	if canCollectItem != null and Input.is_action_just_pressed("Grab") and currentItem == null:
 		canCollectItem.onGrab()
@@ -68,7 +68,7 @@ func throwItem():
 	currentItemInst = null
 	currentItem = null
 	
-	var vec = (($"../..".transform.basis * transform.basis) * Vector3(0, 0, -1)).normalized()
+	var vec = (($"..".transform.basis * transform.basis) * Vector3(0, 0, -1)).normalized()
 	vec *= holdTime
 	
 	newInstance.apply_impulse(vec)

@@ -103,12 +103,29 @@ func _physics_process(delta: float) -> void:
 			wallJumps = maxWallJumps
 		if Input.is_action_just_pressed("Jump"):
 			velocity.y = jumpVec
-		
-	var inputDir := Input.get_vector("Left", "Right", "Up", "Down")
-	var dir = (transform.basis * Vector3(inputDir.x, 0, inputDir.y)).normalized()
 	
-	velocity.x = move_toward(velocity.x, dir.x * speed, accel * delta)
-	velocity.z = move_toward(velocity.z, dir.z * speed, accel * delta)
+	if Input.is_action_just_pressed("Dash") and wallJumps > 0 and not is_on_floor():
+		wallJumps -= 1
+		velocity += ((transform.basis * Vector3(0, 0, -1)).normalized()*30)
+		
+
+	var inputDir := Input.get_vector("Left", "Right", "Up", "Down")
+	var dir := (transform.basis * Vector3(inputDir.x, 0, inputDir.y)).normalized()
+	
+	
+	print("Velocity before acceleration: ", velocity)
+	
+	var targetVel = Vector2(dir.x*speed,dir.z*speed)
+	var horizVel = Vector2(velocity.x, velocity.z)
+	
+	horizVel = horizVel.move_toward(
+		targetVel,
+		accel * delta
+	)
+	
+	velocity.x = horizVel.x
+	velocity.z = horizVel.y
+	
 	
 	wallCamAngle = lerp(wallCamAngle, float(targetWallCamAngle), delta*5)
 	
@@ -130,5 +147,5 @@ func _physics_process(delta: float) -> void:
 	var targetFOV = lerp(normalFOV, maxFOV, horizontalSpeed / 30.0) + (cam.holdTime/3)
 	
 	cam.fov = clamp( lerp(cam.fov, targetFOV, delta * 8.0) , 0, maxFOV)
-			
+
 	move_and_slide()
