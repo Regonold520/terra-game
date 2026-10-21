@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ccah4y72pbiyp" path="res://pickup.png" id="5_kek77"]
 [ext_resource type="Script" uid="uid://lox7wj3uxxer" path="res://camera_3d.gd" id="6_5vw27"]
 [ext_resource type="Texture2D" uid="uid://cj32fp12ff8x6" path="res://testContainer.png" id="6_272bh"]
-[ext_resource type="PackedScene" uid="uid://dcrrt0tv6i27a" path="res://item.tscn" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://bmxesu4jsyiq6" path="res://item_manager.gd" id="10_4c57u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_272bh"]
 sky_top_color = Color(0.645833, 0.8396978, 0.92308724, 1)
@@ -173,42 +173,77 @@ no_depth_test = true
 texture_filter = 0
 texture = ExtResource("4_5vw27")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=950018757]
+[node name="TestMap" type="Node3D" parent="." unique_id=534116205]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TestMap" unique_id=950018757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61359143, 0)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1069475940]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestMap/StaticBody3D" unique_id=1069475940]
 shape = SubResource("BoxShape3D_lfl3o")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1826447694]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/StaticBody3D" unique_id=1826447694]
 mesh = SubResource("BoxMesh_sclpf")
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=509880537]
+[node name="StaticBody3D2" type="StaticBody3D" parent="TestMap" unique_id=509880537]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.778778, 4.9105062, 11.964148)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=836710000]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestMap/StaticBody3D2" unique_id=836710000]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.429489, 20.365358)
 shape = SubResource("BoxShape3D_0xm2m")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3" unique_id=1841621074]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/StaticBody3D2" unique_id=1841621074]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.4204597, 20.34455)
 mesh = SubResource("BoxMesh_ig7tw")
 
-[node name="StaticBody3D4" type="StaticBody3D" parent="." unique_id=476118879]
+[node name="StaticBody3D3" type="StaticBody3D" parent="TestMap" unique_id=476118879]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.576206, 4.9105062, 11.964148)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" unique_id=64736901]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestMap/StaticBody3D3" unique_id=64736901]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.429489, 20.365358)
 shape = SubResource("BoxShape3D_0xm2m")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4" unique_id=965898900]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/StaticBody3D3" unique_id=965898900]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.4204597, 20.34455)
 mesh = SubResource("BoxMesh_ig7tw")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="TestMap" unique_id=523944282]
+transform = Transform3D(0.7848996, 0, 0.61962295, 0, 1, 0, -0.61962295, 0, 0.7848996, -10.627187, 2.1725821, 5.0881557)
+collision_layer = 3
+collision_mask = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/StaticBody3D4" unique_id=909592240]
+mesh = SubResource("BoxMesh_lfl3o")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestMap/StaticBody3D4" unique_id=318006181]
+shape = SubResource("ConcavePolygonShape3D_7mycd")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="TestMap" unique_id=565285540]
+transform = Transform3D(0.32613695, 0, -0.9453225, 0, 1, 0, 0.9453225, 0, 0.32613695, -14.663799, 2.1725821, -21.047468)
+collision_layer = 3
+collision_mask = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/StaticBody3D5" unique_id=776345525]
+mesh = SubResource("BoxMesh_kek77")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestMap/StaticBody3D5" unique_id=1349369014]
+shape = SubResource("ConcavePolygonShape3D_7mycd")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="TestMap" unique_id=1367777331]
+transform = Transform3D(0.7848996, -0.32607284, 0.5268863, 0, 0.8503337, 0.5262439, -0.61962295, -0.41304868, 0.6674266, -17.642143, 4.5713363, -4.2554607)
+collision_layer = 3
+collision_mask = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/StaticBody3D6" unique_id=466586898]
+mesh = SubResource("BoxMesh_dg77c")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestMap/StaticBody3D6" unique_id=456683665]
+shape = SubResource("ConcavePolygonShape3D_7mycd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=141399598]
 transform = Transform3D(0.8225092, -0.5202799, 0.229756, -0.562761, -0.6860056, 0.46119034, -0.08233416, -0.50863093, -0.857039, 0, -6.6362104, 0)
@@ -219,39 +254,5 @@ light_specular = 0.0
 shadow_enabled = true
 shadow_bias = 1.798
 
-[node name="TestCube" type="StaticBody3D" parent="." unique_id=523944282]
-transform = Transform3D(0.7848996, 0, 0.61962295, 0, 1, 0, -0.61962295, 0, 0.7848996, -10.627187, 2.1725821, 5.0881557)
-collision_layer = 3
-collision_mask = 3
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TestCube" unique_id=909592240]
-mesh = SubResource("BoxMesh_lfl3o")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestCube" unique_id=318006181]
-shape = SubResource("ConcavePolygonShape3D_7mycd")
-
-[node name="TestCube3" type="StaticBody3D" parent="." unique_id=565285540]
-transform = Transform3D(0.32613695, 0, -0.9453225, 0, 1, 0, 0.9453225, 0, 0.32613695, -14.663799, 2.1725821, -21.047468)
-collision_layer = 3
-collision_mask = 3
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TestCube3" unique_id=776345525]
-mesh = SubResource("BoxMesh_kek77")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestCube3" unique_id=1349369014]
-shape = SubResource("ConcavePolygonShape3D_7mycd")
-
-[node name="TestCube2" type="StaticBody3D" parent="." unique_id=1367777331]
-transform = Transform3D(0.7848996, -0.32607284, 0.5268863, 0, 0.8503337, 0.5262439, -0.61962295, -0.41304868, 0.6674266, -17.642143, 4.5713363, -4.2554607)
-collision_layer = 3
-collision_mask = 3
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TestCube2" unique_id=466586898]
-mesh = SubResource("BoxMesh_dg77c")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestCube2" unique_id=456683665]
-shape = SubResource("ConcavePolygonShape3D_7mycd")
-
-[node name="Item" parent="." unique_id=2131885660 instance=ExtResource("8_5vw27")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1054883, 0.9031501, -9.05744)
-id = "scissors"
+[node name="ItemManager" type="Node3D" parent="." unique_id=506976193]
+script = ExtResource("10_4c57u")

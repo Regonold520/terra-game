@@ -4,6 +4,7 @@ extends Camera3D
 var canCollectItem = null
 
 var currentItem = null
+var currentItemInst = null
 
 var canSwing = true
 var swingers = 2
@@ -13,14 +14,14 @@ var isSwinging = false
 var holdTime = 0
 
 func swing():
-	if currentItem != null and isSwinging == false:
+	if currentItem != null and isSwinging == false and holdTime <= 0:
 		isSwinging = true
 		for i in swingers + 1:
 			if i + 1 > swingers:
 				isSwinging = false
-				$"../Player/CamPivot/Camera3D/Arm".texture = load("res://items/"+currentItem+"/"+currentItem+"Hold.png")
+				$Arm.texture = load("res://items/"+currentItem+"/"+currentItem+"Hold.png")
 			else:	
-				$"../Player/CamPivot/Camera3D/Arm".texture = load("res://items/"+currentItem+"/"+currentItem+"Swing"+str(i+1)+".png")
+				$Arm.texture = load("res://items/"+currentItem+"/"+currentItem+"Swing"+str(i+1)+".png")
 			
 			await get_tree().create_timer(swings[i]).timeout
 
@@ -29,6 +30,8 @@ func _ready() -> void:
 
 var deltaTimer = 0.0
 func _process(delta: float) -> void:
+	if currentItemInst:
+		print(currentItemInst.erioVal)
 	if Input.is_action_just_pressed("Click"):
 		swing()
 	
@@ -49,7 +52,6 @@ func _process(delta: float) -> void:
 	if canCollectItem != null and Input.is_action_just_pressed("Grab") and currentItem == null:
 		canCollectItem.onGrab()
 		
-	print(holdTime)
 		
 	if Input.is_action_pressed("Drop") and currentItem != null and isSwinging == false:
 		holdTime = clamp(holdTime + (delta*15), 0, 20)
@@ -61,13 +63,9 @@ func _process(delta: float) -> void:
 		
 		
 func throwItem():
-	var newInstance = load("res://item.tscn").instantiate()
+	var newInstance = Ref.itemManager.spawnInstancedItem(currentItemInst, global_position)
 	
-	get_tree().current_scene.add_child(newInstance)
-	newInstance.global_position = global_position
-	
-	newInstance.loadData(currentItem)
-	
+	currentItemInst = null
 	currentItem = null
 	
 	var vec = (($"../..".transform.basis * transform.basis) * Vector3(0, 0, -1)).normalized()

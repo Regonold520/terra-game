@@ -1,0 +1,263 @@
+[gd_scene format=3 uid="uid://cd16g48up2se3"]
+
+[ext_resource type="Script" uid="uid://dp6hblaxnll0h" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://dg7jwq7gbhvy1" path="res://jumpBar.png" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://cdf2yepjf30a0" path="res://wobbler.gd" id="2_lquwl"]
+[ext_resource type="Texture2D" uid="uid://c6yf7ts40ij86" path="res://barFilled.png" id="3_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://b5cew8kyft7wk" path="res://camArm1.png" id="4_5vw27"]
+[ext_resource type="Texture2D" uid="uid://ccah4y72pbiyp" path="res://pickup.png" id="5_kek77"]
+[ext_resource type="Script" uid="uid://lox7wj3uxxer" path="res://camera_3d.gd" id="6_5vw27"]
+[ext_resource type="Texture2D" uid="uid://cj32fp12ff8x6" path="res://testContainer.png" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://dcrrt0tv6i27a" path="res://items/item.tscn" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://bmxesu4jsyiq6" path="res://item_manager.gd" id="10_4c57u"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_272bh"]
+sky_top_color = Color(0.645833, 0.8396978, 0.92308724, 1)
+sky_curve = 1e-05
+sun_angle_max = 0.0
+use_debanding = false
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_272bh")
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_density = 1.0
+fog_aerial_perspective = 1.0
+fog_depth_curve = 1.5691653
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sclpf"]
+height = 2.6323242
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfl3o"]
+height = 2.6323242
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lfl3o"]
+size = Vector3(50.708984, 1, 49.677734)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(0.23642501, 0.35, 0.1435, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sclpf"]
+material = SubResource("StandardMaterial3D_h2yge")
+size = Vector3(50.708984, 1, 49.677734)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+size = Vector3(1.2176514, 23.781647, 53.562744)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
+size = Vector3(1.2176514, 23.781647, 53.562744)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
+specular_mode = 1
+albedo_texture = ExtResource("6_272bh")
+metallic_specular = 0.0
+uv1_scale = Vector3(0.065, 0.065, 0.061)
+uv1_offset = Vector3(0.19, 0.28, -0.55)
+uv1_triplanar = true
+uv2_offset = Vector3(-0.07, 0, 0)
+texture_filter = 1
+billboard_keep_scale = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_lfl3o"]
+material = SubResource("StandardMaterial3D_272bh")
+size = Vector3(5.32666, 4.7927856, 14.869141)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7mycd"]
+data = PackedVector3Array(-2.6633, 2.3964, 7.4346, 2.6633, 2.3964, 7.4346, -2.6633, -2.3964, 7.4346, 2.6633, 2.3964, 7.4346, 2.6633, -2.3964, 7.4346, -2.6633, -2.3964, 7.4346, 2.6633, 2.3964, -7.4346, -2.6633, 2.3964, -7.4346, 2.6633, -2.3964, -7.4346, -2.6633, 2.3964, -7.4346, -2.6633, -2.3964, -7.4346, 2.6633, -2.3964, -7.4346, 2.6633, 2.3964, 7.4346, 2.6633, 2.3964, -7.4346, 2.6633, -2.3964, 7.4346, 2.6633, 2.3964, -7.4346, 2.6633, -2.3964, -7.4346, 2.6633, -2.3964, 7.4346, -2.6633, 2.3964, -7.4346, -2.6633, 2.3964, 7.4346, -2.6633, -2.3964, -7.4346, -2.6633, 2.3964, 7.4346, -2.6633, -2.3964, 7.4346, -2.6633, -2.3964, -7.4346, 2.6633, 2.3964, 7.4346, -2.6633, 2.3964, 7.4346, 2.6633, 2.3964, -7.4346, -2.6633, 2.3964, 7.4346, -2.6633, 2.3964, -7.4346, 2.6633, 2.3964, -7.4346, -2.6633, -2.3964, 7.4346, 2.6633, -2.3964, 7.4346, -2.6633, -2.3964, -7.4346, 2.6633, -2.3964, 7.4346, 2.6633, -2.3964, -7.4346, -2.6633, -2.3964, -7.4346)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7mycd"]
+load_path = "res://.godot/imported/testContainer.png-aa4d7b509817d3d8cc95ee9d92d5b08f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+specular_mode = 1
+albedo_color = Color(0.60719997, 0.92, 0.66976005, 1)
+albedo_texture = SubResource("CompressedTexture2D_7mycd")
+metallic_specular = 0.0
+uv1_scale = Vector3(0.065, 0.065, 0.061)
+uv1_offset = Vector3(0.19, 0.28, -0.55)
+uv1_triplanar = true
+texture_filter = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_kek77"]
+material = SubResource("StandardMaterial3D_5vw27")
+size = Vector3(5.32666, 4.7927856, 14.869141)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4c57u"]
+load_path = "res://.godot/imported/testContainer.png-aa4d7b509817d3d8cc95ee9d92d5b08f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efxa6"]
+specular_mode = 1
+albedo_color = Color(0.76, 0.2888, 0.2888, 1)
+albedo_texture = SubResource("CompressedTexture2D_4c57u")
+metallic_specular = 0.0
+uv1_scale = Vector3(0.065, 0.065, 0.061)
+uv1_offset = Vector3(0.19, 0.28, -0.55)
+uv1_triplanar = true
+texture_filter = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_dg77c"]
+material = SubResource("StandardMaterial3D_efxa6")
+size = Vector3(5.32666, 4.7927856, 14.869141)
+
+[node name="Main" type="Node3D" unique_id=720287220]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1393728126]
+environment = SubResource("Environment_h2yge")
+
+[node name="Wobbler" type="Node3D" parent="." unique_id=313427264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3233464, 0)
+script = ExtResource("2_lquwl")
+
+[node name="Sprite3D" type="Sprite3D" parent="Wobbler" unique_id=188801559]
+transform = Transform3D(0.14565235, -0.022236465, 0.048124123, 0, 0.14070551, 0.06501507, -0.053013124, -0.061094183, 0.13221993, -0.8, -0.58, -0.855)
+no_depth_test = true
+texture_filter = 0
+texture = ExtResource("2_h2yge")
+
+[node name="2" type="Sprite3D" parent="Wobbler/Sprite3D" unique_id=1535444560]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.055, 0, 0)
+sorting_offset = 1.645
+no_depth_test = true
+texture_filter = 5
+texture = ExtResource("3_1bvp3")
+
+[node name="3" type="Sprite3D" parent="Wobbler/Sprite3D" unique_id=698791918]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 1.4901161e-08, 0, -1.4901161e-08, 0.9999998, 0.9356558, 0, 0)
+sorting_offset = 1.645
+no_depth_test = true
+texture = ExtResource("3_1bvp3")
+
+[node name="1" type="Sprite3D" parent="Wobbler/Sprite3D" unique_id=205297073]
+transform = Transform3D(1, 0, 0, 0, 0.9999996, 4.4703484e-08, 0, -4.4703484e-08, 0.9999996, -1.045, 0, 0)
+sorting_offset = 1.645
+no_depth_test = true
+texture = ExtResource("3_1bvp3")
+
+[node name="Pickup" type="Sprite3D" parent="Wobbler" unique_id=83477090]
+transform = Transform3D(0.065, 0, 0, 0, 0.065, 0, 0, 0, 0.065, 0, -0.98, -1.575)
+no_depth_test = true
+texture_filter = 0
+texture = ExtResource("5_kek77")
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=840459433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2343464, 0)
+script = ExtResource("1_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=1105124648]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3161621, 0)
+mesh = SubResource("CapsuleMesh_sclpf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1305567211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30804694, 0)
+shape = SubResource("CapsuleShape3D_lfl3o")
+
+[node name="CamPivot" type="Node3D" parent="Player" unique_id=901105487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.089, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/CamPivot" unique_id=592674095]
+fov = 81.4
+script = ExtResource("6_5vw27")
+
+[node name="Interactor" type="RayCast3D" parent="Player/CamPivot/Camera3D" unique_id=1114992777]
+target_position = Vector3(0, 0, -3)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="Arm" type="Sprite3D" parent="Player/CamPivot/Camera3D" unique_id=484793355]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0.725, -0.20000005, -1.575)
+no_depth_test = true
+texture_filter = 0
+texture = ExtResource("4_5vw27")
+
+[node name="TestMap" type="Node3D" parent="." unique_id=534116205]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TestMap" unique_id=950018757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61359143, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestMap/StaticBody3D" unique_id=1069475940]
+shape = SubResource("BoxShape3D_lfl3o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/StaticBody3D" unique_id=1826447694]
+mesh = SubResource("BoxMesh_sclpf")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="TestMap" unique_id=509880537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.778778, 4.9105062, 11.964148)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestMap/StaticBody3D2" unique_id=836710000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.429489, 20.365358)
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/StaticBody3D2" unique_id=1841621074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.4204597, 20.34455)
+mesh = SubResource("BoxMesh_ig7tw")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="TestMap" unique_id=476118879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.576206, 4.9105062, 11.964148)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestMap/StaticBody3D3" unique_id=64736901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.429489, 20.365358)
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/StaticBody3D3" unique_id=965898900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.4204597, 20.34455)
+mesh = SubResource("BoxMesh_ig7tw")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="TestMap" unique_id=523944282]
+transform = Transform3D(0.7848996, 0, 0.61962295, 0, 1, 0, -0.61962295, 0, 0.7848996, -10.627187, 2.1725821, 5.0881557)
+collision_layer = 3
+collision_mask = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/StaticBody3D4" unique_id=909592240]
+mesh = SubResource("BoxMesh_lfl3o")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestMap/StaticBody3D4" unique_id=318006181]
+shape = SubResource("ConcavePolygonShape3D_7mycd")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="TestMap" unique_id=565285540]
+transform = Transform3D(0.32613695, 0, -0.9453225, 0, 1, 0, 0.9453225, 0, 0.32613695, -14.663799, 2.1725821, -21.047468)
+collision_layer = 3
+collision_mask = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/StaticBody3D5" unique_id=776345525]
+mesh = SubResource("BoxMesh_kek77")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestMap/StaticBody3D5" unique_id=1349369014]
+shape = SubResource("ConcavePolygonShape3D_7mycd")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="TestMap" unique_id=1367777331]
+transform = Transform3D(0.7848996, -0.32607284, 0.5268863, 0, 0.8503337, 0.5262439, -0.61962295, -0.41304868, 0.6674266, -17.642143, 4.5713363, -4.2554607)
+collision_layer = 3
+collision_mask = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/StaticBody3D6" unique_id=466586898]
+mesh = SubResource("BoxMesh_dg77c")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TestMap/StaticBody3D6" unique_id=456683665]
+shape = SubResource("ConcavePolygonShape3D_7mycd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=141399598]
+transform = Transform3D(0.8225092, -0.5202799, 0.229756, -0.562761, -0.6860056, 0.46119034, -0.08233416, -0.50863093, -0.857039, 0, -6.6362104, 0)
+light_energy = 1.302
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 1.798
+
+[node name="Item" parent="." unique_id=2131885660 instance=ExtResource("8_5vw27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1054883, 0.9031501, -9.05744)
+id = "scissors"
+
+[node name="ItemManager" type="Node3D" parent="." unique_id=506976193]
+script = ExtResource("10_4c57u")
