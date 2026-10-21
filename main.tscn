@@ -5,10 +5,16 @@
 [ext_resource type="Script" uid="uid://cdf2yepjf30a0" path="res://wobbler.gd" id="2_lquwl"]
 [ext_resource type="Texture2D" uid="uid://c6yf7ts40ij86" path="res://barFilled.png" id="3_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b5cew8kyft7wk" path="res://camArm1.png" id="4_5vw27"]
+[ext_resource type="Texture2D" uid="uid://25hcwb0pka2b" path="res://dialogueBox.png" id="5_dg77c"]
 [ext_resource type="Texture2D" uid="uid://ccah4y72pbiyp" path="res://pickup.png" id="5_kek77"]
 [ext_resource type="Script" uid="uid://lox7wj3uxxer" path="res://camera_3d.gd" id="6_5vw27"]
 [ext_resource type="Texture2D" uid="uid://cj32fp12ff8x6" path="res://testContainer.png" id="6_272bh"]
+[ext_resource type="Texture2D" uid="uid://dnslcagrsomit" path="res://Npcs/Trev/trevName.png" id="7_w48qg"]
+[ext_resource type="FontFile" uid="uid://6416nagu2nco" path="res://LondrinaSolid-Regular.ttf" id="7_ycdy4"]
 [ext_resource type="Script" uid="uid://bmxesu4jsyiq6" path="res://item_manager.gd" id="10_4c57u"]
+[ext_resource type="Texture2D" uid="uid://b765ijtts7in" path="res://Npcs/Trev/trev.png" id="10_efxa6"]
+[ext_resource type="Script" uid="uid://jq25es1nvugk" path="res://npc.gd" id="14_w48qg"]
+[ext_resource type="Script" uid="uid://baerlca1arwkm" path="res://dialogue_manager.gd" id="15_vivmo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_272bh"]
 sky_top_color = Color(0.645833, 0.8396978, 0.92308724, 1)
@@ -103,6 +109,9 @@ texture_filter = 1
 material = SubResource("StandardMaterial3D_efxa6")
 size = Vector3(5.32666, 4.7927856, 14.869141)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_sclpf"]
+size = Vector3(1.9157715, 2.7324219, 1.765625)
+
 [node name="Main" type="Node3D" unique_id=720287220]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1393728126]
@@ -137,11 +146,44 @@ sorting_offset = 1.645
 no_depth_test = true
 texture = ExtResource("3_1bvp3")
 
-[node name="Pickup" type="Sprite3D" parent="Wobbler" unique_id=83477090]
+[node name="PromptImg" type="Sprite3D" parent="Wobbler" unique_id=83477090]
 transform = Transform3D(0.065, 0, 0, 0, 0.065, 0, 0, 0, 0.065, 0, -0.98, -1.575)
 no_depth_test = true
 texture_filter = 0
 texture = ExtResource("5_kek77")
+
+[node name="DialogueBox" type="Sprite3D" parent="Wobbler" unique_id=1057040603]
+transform = Transform3D(0.3670518, 0, 0.09835123, 0, 0.38, 0, -0.09835123, 0, 0.3670518, -0.765, -0.395, -1.465)
+visible = false
+no_depth_test = true
+texture_filter = 0
+texture = ExtResource("5_dg77c")
+
+[node name="Icon" type="Sprite3D" parent="Wobbler/DialogueBox" unique_id=1399375474]
+transform = Transform3D(0.10500674, -0.007342787, 0, 0.007342786, 0.105006754, 0, 0, 0, 0.10526315, -1.823, 1.066, -0.168)
+no_depth_test = true
+texture_filter = 0
+texture = ExtResource("10_efxa6")
+
+[node name="Icon2" type="Sprite3D" parent="Wobbler/DialogueBox" unique_id=1459217599]
+transform = Transform3D(0.22935258, 0.017245106, 0, -0.017245106, 0.22935258, 0, 0, 0, 0.23, -0.828, 0.926, -0.168)
+no_depth_test = true
+texture_filter = 0
+render_priority = 2
+texture = ExtResource("7_w48qg")
+
+[node name="Text" type="Label3D" parent="Wobbler/DialogueBox" unique_id=196551405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.29, 0.56, 0.109)
+sorting_offset = 0.42
+no_depth_test = true
+modulate = Color(0, 0, 0, 1)
+font = ExtResource("7_ycdy4")
+font_size = 40
+horizontal_alignment = 0
+vertical_alignment = 0
+line_spacing = -8.245
+autowrap_mode = 3
+width = 923.475
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=840459433]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2343464, 0)
@@ -257,3 +299,22 @@ shadow_bias = 1.798
 
 [node name="ItemManager" type="Node3D" parent="." unique_id=506976193]
 script = ExtResource("10_4c57u")
+
+[node name="Trev" type="StaticBody3D" parent="." unique_id=879239620]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2192657, -3.540824)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("14_w48qg")
+
+[node name="Sprite" type="Sprite3D" parent="Trev" unique_id=1834696177]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
+billboard = 2
+double_sided = false
+render_priority = -50
+texture = ExtResource("10_efxa6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trev" unique_id=1149857077]
+shape = SubResource("BoxShape3D_sclpf")
+
+[node name="DialogueManager" type="Node3D" parent="." unique_id=1125093890]
+script = ExtResource("15_vivmo")

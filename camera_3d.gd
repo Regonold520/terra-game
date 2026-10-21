@@ -13,6 +13,8 @@ var isSwinging = false
 
 var holdTime = 0
 
+var canNpcInteract
+
 func swing():
 	if currentItem != null and isSwinging == false and holdTime <= 0:
 		isSwinging = true
@@ -40,14 +42,23 @@ func _process(delta: float) -> void:
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()
 		
-		if collider.is_in_group("Item"):
+		if collider is Item:
 			canCollectItem = collider
+			$"../../Wobbler/PromptImg".texture = load("res://pickup.png")
+		if collider is NPC and canCollectItem == null:
+			canNpcInteract = collider
+			$"../../Wobbler/PromptImg".texture = load("res://talk.png")
 	else:
 		canCollectItem = null
+		canNpcInteract = null
+	print(canNpcInteract, "npc")
+	$"../../Wobbler/PromptImg".visible = canCollectItem != null or canNpcInteract != null
+
+
+	if canNpcInteract != null and Input.is_action_just_pressed("Grab"):
+		Ref.dialogueManager.initiateDialogue(canNpcInteract, "test")
 	
-	$"../../Wobbler/Pickup".visible = canCollectItem != null
-	
-	$"../../Wobbler/Pickup".rotation_degrees.z = floor((sin(deltaTimer*5)+0.5))*10
+	$"../../Wobbler/PromptImg".rotation_degrees.z = floor((sin(deltaTimer*5)+0.5))*10
 	
 	if canCollectItem != null and Input.is_action_just_pressed("Grab") and currentItem == null:
 		canCollectItem.onGrab()

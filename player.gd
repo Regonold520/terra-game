@@ -108,12 +108,12 @@ func _physics_process(delta: float) -> void:
 		wallJumps -= 1
 		velocity += ((transform.basis * Vector3(0, 0, -1)).normalized()*30)
 		
-
-	var inputDir := Input.get_vector("Left", "Right", "Up", "Down")
+	
+	var inputDir = Vector2.ZERO
+	
+	inputDir = Input.get_vector("Left", "Right", "Up", "Down")
+	
 	var dir := (transform.basis * Vector3(inputDir.x, 0, inputDir.y)).normalized()
-	
-	
-	print("Velocity before acceleration: ", velocity)
 	
 	var targetVel = Vector2(dir.x*speed,dir.z*speed)
 	var horizVel = Vector2(velocity.x, velocity.z)

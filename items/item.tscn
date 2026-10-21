@@ -17,7 +17,7 @@ script = ExtResource("1_ttk8k")
 [node name="Sprite" type="Sprite3D" parent="." unique_id=109700683]
 transform = Transform3D(0.14556074, 0, 0, 0, 0.14556074, 0, 0, 0, 1, -0.00096948445, 0.9481698, 0)
 billboard = 2
-render_priority = -43
+render_priority = -50
 texture = ExtResource("1_tnite")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1257636145]
