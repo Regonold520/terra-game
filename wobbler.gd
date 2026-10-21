@@ -3,7 +3,12 @@ extends Node3D
 var idealPosition = Vector3.ZERO
 var lerpy = 160
 
+var deltaTimer = 0.0
 func _process(delta: float) -> void:
+	deltaTimer += delta
+	
+	$"../Player/CamPivot/Camera3D/Arm".position.y = 0.0 + sin(deltaTimer)/20
+	
 	var cam = get_viewport().get_camera_3d()
 	
 	var weight = 1.0 - exp(-lerpy * delta)

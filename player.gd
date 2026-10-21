@@ -127,8 +127,8 @@ func _physics_process(delta: float) -> void:
 		targetWallCamAngle = 0
 	
 	var horizontalSpeed = Vector2(velocity.x, velocity.z).length()
-	var targetFOV = lerp(normalFOV, maxFOV, horizontalSpeed / 30.0)
+	var targetFOV = lerp(normalFOV, maxFOV, horizontalSpeed / 30.0) + (cam.holdTime/3)
 	
-	cam.fov = lerp(cam.fov, targetFOV, delta * 8.0)
+	cam.fov = clamp( lerp(cam.fov, targetFOV, delta * 8.0) , 0, maxFOV)
 			
 	move_and_slide()
