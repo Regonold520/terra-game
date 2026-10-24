@@ -10,6 +10,9 @@ Left Shift - Dash
 Hold / tap Right click - Throw / Drop Item
 E - Interact
 Left Click - Swing Item
+Esc - Free mouse from locking
 
 You can wallrun on walls and wall jump too.
 The game so far is mostly unfinished as it is just in the beginning works but I plan to add a lot more over the coming weeks!
+
+To run the project simply download the github release and run the .exe
